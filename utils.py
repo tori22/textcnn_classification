@@ -31,8 +31,8 @@ def gen_subject_dict(path, path2):
 
     label_to_sub = dict(zip(sub_to_label.values(), sub_to_label.keys()))
     return sub_to_label, label_to_sub
-def gen_vocab(path, path2):
 
+def gen_vocab(path, path2):
     df_all = pd.read_csv(path, encoding='utf-8')
     contents = set(list(df_all['content']))
     vocab_set = set()
@@ -56,3 +56,4 @@ def format_padding(data_dict, vocab_dict,nedded_len):
     sentences = sentences.apply(lambda sen:sen+[vocab_dict['none']] * (nedded_len-len(sen)))
     data = list(zip(sentences, data_dict.values()))
     return data
+
