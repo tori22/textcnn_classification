@@ -1,3 +1,6 @@
+from utils import loadDataset
+
+
 class Config(object):
     def __init__(self):
         self.TRAIN_DATA_PATH = './data/train_data.csv'
@@ -29,3 +32,8 @@ if __name__=='__main__':
     print('==>configure initailized')
 
 
+
+    train = loadDataset(config.TRAIN_DATA_PATH)
+    print(train)
+    test = loadDataset(config.TEST_DATA_PATH)
+    print(test)
