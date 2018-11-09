@@ -1,4 +1,4 @@
-from utils import loadDataset
+from utils import *
 
 
 class Config(object):
@@ -37,3 +37,5 @@ if __name__=='__main__':
     print(train)
     test = loadDataset(config.TEST_DATA_PATH)
     print(test)
+    x,y = gen_subject_dict(config.DATA_ALL, config.SUB_TO_LABEL_PATH)
+    print(x,y)

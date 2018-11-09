@@ -1,6 +1,8 @@
 import jieba
 import re
 import pandas as pd
+import os
+import pickle
 
 def loadDataset(path):
     df_file = pd.read_csv(path, encoding='utf-8')
@@ -14,5 +16,18 @@ def loadDataset(path):
 
     return data_dict
 
+def gen_subject_dict(path, path2):
+    df_all = pd.read_csv(path, encoding='utf-8')
+    subject = set(list(df_all['subject']))
 
+    sub_to_label = {}
+    if os.path.exists(path2):
+        sub_to_label = pickle.load(open(path2,'rb'))
+    else:
+        for sub in subject:
+            sub_to_label[sub] = idx
+            idx += 1
+        pickle.dump(sub_to_label,open(path2,'wb'))
 
+    label_to_sub = dict(zip(sub_to_label.values(), sub_to_label.keys()))
+    return sub_to_label, label_to_sub
