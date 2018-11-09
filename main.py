@@ -1,4 +1,5 @@
 from utils import *
+import pandas as pd
 
 
 class Config(object):
@@ -33,9 +34,11 @@ if __name__=='__main__':
 
 
 
-    train = loadDataset(config.TRAIN_DATA_PATH)
-    print(train)
-    test = loadDataset(config.TEST_DATA_PATH)
-    print(test)
+    train_data_dict = loadDataset(config.TRAIN_DATA_PATH)
+    test_data_dict = loadDataset(config.TEST_DATA_PATH)
     x,y = gen_subject_dict(config.DATA_ALL, config.SUB_TO_LABEL_PATH)
     print(x,y)
+
+    vocab_dict = gen_vocab(config.DATA_ALL, config.VOCAB_DICT_PATH)
+    train_data = format_padding(train_data_dict, vocab_dict,config.SENTENCE_LEN)
+    print(train_data)
